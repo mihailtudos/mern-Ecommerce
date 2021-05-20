@@ -5,3 +5,16 @@ body {
 main {
   min-height: 80vw;
 }
+
+h3 {
+ padding-top: 1rem;
+ text-align: center;
+}
+
+.rating span {
+  margin: 0.1rem
+}
+
+.btn-block {
+  width: 100%;
+}
