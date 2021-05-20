@@ -1,0 +1,32 @@
+{
+  "name": "nirmotor",
+  "version": "1.0.0",
+  "description": "Un ecommerce website pentru vinzare de motoare agricole creat pentru clientul Nirmotor",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihailtudos/mern-ecommerce.git"
+  },
+  "author": "Mihail Tudos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mihailtudos/mern-ecommerce/issues"
+  },
+  "homepage": "https://github.com/mihailtudos/mern-ecommerce#readme",
+  "dependencies": {
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.10"
+  },
+  "devDependencies": {
+    "concurrently": "^6.1.0",
+    "nodemon": "^2.0.7"
+  }
+}
