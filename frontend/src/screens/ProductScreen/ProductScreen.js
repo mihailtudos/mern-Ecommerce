@@ -1,81 +1,107 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import {Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
 import Rating from '../../components/Rating/Rating';
-import axios from 'axios';
+import {listProductDetails} from "../../actions/productActions";
+import Message from "../../components/Message/Message";
+import Loader from "../../components/Loader/Loader";
 
-const ProductScreen = ({ match }) => {
-  const [product, setproduct] = useState([]);
-  const productId = match.params.pid;
+const ProductScreen = ({ history, match }) => {
+  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch();
+  const productDetails = useSelector(state => state.productDetails);
+  const { product, loading, error } = productDetails;
+  const id = match.params.pid;
 
   useEffect(() => {
-    const getProduct = async () => {
-      const { data } = await axios.get(`/api/products/${productId}`)
+    dispatch(listProductDetails(id));
+  }, [dispatch, match, id]);
 
-      setproduct(data);
-    }
+  const addToCartHandler = () => {
+    history.push(`/cart/${id}?qty=${qty}`)
+  }
 
-    getProduct();
-  }, [productId])
-  
   return (
     <React.Fragment>
-      <Link className='btn my-3 btn-dark rounded' to='/'>GO BACK</Link>
-      <Row>
-        <Col md={6}>
-          <Image src={product.image} alt={product.name} fluid />
-        </Col>
-        <Col md={3}>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>
-              <h3>{ product.name }</h3>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Rating value={product.rating || 0} text={product.numReviews || 0}/>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              Price: ${product.price}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              Description: ${product.description}
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col md={3}>
-          <Card>
+      <Link className='btn my-3 rounded' to='/'>GO BACK</Link>
+      {loading ? <Loader/> : error ? <Message variant={'danger'}> {error} </Message> :
+        <Row>
+          <Col md={6}>
+            <Image src={product.image} alt={product.name} fluid/>
+          </Col>
+          <Col md={3}>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <Row>
-                  <Col>
-                    Price: 
-                  </Col>
-                  <Col>
-                    <strong>{product.price}$</strong>
-                  </Col>
-                </Row>
+                <h3>{product.name}</h3>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Row>
-                  <Col>
-                    Status: 
-                  </Col>
-                  <Col>
-                    { product.countInStock > 0 ? 'In Stock' : 'Out Of Stock' }
-                  </Col>
-                </Row>
+                <Rating value={product.rating || 0} text={product.numReviews || 0}/>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Button 
-                  className='btn-block rounded' 
-                  type='button' 
-                  disabled={product.countInStock === 0 }>
-                  Add to cart
-                </Button>
+                Price: ${product.price}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                Description: ${product.description}
               </ListGroup.Item>
             </ListGroup>
-          </Card>
-        </Col>
-      </Row>
+          </Col>
+          <Col md={3}>
+            <Card>
+              <ListGroup variant='flush'>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>
+                      Price:
+                    </Col>
+                    <Col>
+                      <strong>{product.price}$</strong>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>
+                      Status:
+                    </Col>
+                    <Col>
+                      {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Qty</Col>
+                      <Col>
+                        <Form.Control
+                          as={'select'}
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}>
+                          {
+                            [...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>{x + 1}</option>
+                          ))
+                          }
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
+                <ListGroup.Item>
+                  <Button
+                    onClick={ addToCartHandler }
+                    className='btn-block rounded'
+                    type='submit'
+                    disabled={product.countInStock === 0}>
+                    Add to cart
+                  </Button>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+        </Row>
+      }
     </React.Fragment>
   )
 }
