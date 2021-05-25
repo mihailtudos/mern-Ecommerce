@@ -2,10 +2,6 @@ body {
   background: #fff;
 }
 
-main {
-  min-height: 80vw;
-}
-
 h3 {
  padding-top: 1rem;
  text-align: center;
@@ -27,4 +23,8 @@ h1 {
 h2 {
     font-size: 1.4rem;
     padding: 0.5rem 0;
+}
+
+a {
+    text-decoration: none;
 }
