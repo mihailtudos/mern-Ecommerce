@@ -1,6 +1,6 @@
-import Order from '../Models/Order.js';
+import Order from '../models/Order.js';
 import asyncHandler from 'express-async-handler';
-import Product from "../Models/Product";
+import Product from "../models/Product.js";
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -13,6 +13,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     throw new Error('No order items');
     return;
   } else {
+    console.log('your order', orderItems)
     const order = new Order({
       orderItems,
       user: req.user._id,
@@ -31,6 +32,21 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
 });
 
+// @desc    Get order by Id
+// @route   GER /api/orders/:id
+// @access  Private
+const getOrderById = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id).populate('user', 'name email');
+
+  if (order) {
+    res.json(order);
+  } else {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+});
+
 export {
-  addOrderItems
+  addOrderItems,
+  getOrderById
 }

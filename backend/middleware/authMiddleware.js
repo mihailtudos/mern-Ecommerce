@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import asyncHandler from "express-async-handler";
-import User from "../Models/User.js";
+import User from "../models/User.js";
 
 //middleware that checks if the request has the token issues  by the backend in order to protect specific routes
 const protect = asyncHandler(async (req, res, next) => {
