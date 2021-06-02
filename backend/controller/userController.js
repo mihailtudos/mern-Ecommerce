@@ -164,7 +164,6 @@ const getUserById = asyncHandler(async (req, res) => {
 //@route  PUT /api/users/:id
 //@access Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
-  console.log(req.body.isAdmin)
   const user = await User.findById(req.params.id);
 
   if (user) {
