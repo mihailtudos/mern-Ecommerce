@@ -7,6 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import {listProductDetails, updateProduct} from "../../actions/productActions";
 import {PRODUCT_UPDATE_RESET} from "../../constants/productConstants";
+import axios from "axios";
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -19,6 +20,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('')
+  const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -59,6 +61,29 @@ const ProductEditScreen = ({ match, history }) => {
       description,
       countInStock
     }))
+  };
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+
+      const { data } = await axios.post('/api/upload', formData, config);
+
+      setImage(data);
+      setUploading(false);
+    } catch (error) {
+      console.log(error);
+      setUploading(false);
+    }
   }
 
   return (
@@ -93,7 +118,7 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group
-              controlId={'price'}
+              controlId={'image'}
               className={'my-4'}>
               <Form.Label>Image</Form.Label>
               <Form.Control
@@ -101,6 +126,12 @@ const ProductEditScreen = ({ match, history }) => {
                 value={image}
                 placeholder={'Enter image URL'}
                 onChange={(e) => setImage(e.target.value)}/>
+              <Form.File
+                id={'image-file'}
+                custom
+                onChange={uploadFileHandler}
+              />
+              { uploading && <Loader />}
             </Form.Group>
 
             <Form.Group
