@@ -6,7 +6,8 @@ import Rating from '../../components/Rating/Rating';
 import {createProductReview, listProductDetails} from "../../actions/productActions";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
-import {PRODUCT_CREATE_REVIEW_RESET} from "../../constants/productConstants";
+import {PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DETAILS_RESET} from "../../constants/productConstants";
+import MetaComponent from "../../components/MetaComponent/MetaComponent";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -25,6 +26,13 @@ const ProductScreen = ({ history, match }) => {
   const { success: successReview, error: errorReview } = productCreateReview;
 
   const id = match.params.pid;
+
+  useEffect(() => {
+    if (product) {
+      dispatch({type: PRODUCT_DETAILS_RESET})
+    }
+  }, []);
+
 
   useEffect(() => {
     if (successReview) {
@@ -54,6 +62,7 @@ const ProductScreen = ({ history, match }) => {
       {loading ? <Loader/> : error ? <Message variant={'danger'}> {error} </Message> :
         (<>
             <Row>
+              <MetaComponent title={product.name}/>
               <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid/>
               </Col>

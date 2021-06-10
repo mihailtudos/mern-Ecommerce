@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Product from '../../components/Product/Product';
 import { listProducts } from "../../actions/productActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import Paginate from "../../components/Paginate/Paginate";
+import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
+import MetaComponent from "../../components/MetaComponent/MetaComponent";
 
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -21,9 +24,13 @@ const HomeScreen = ({ match }) => {
 
   return (
     <React.Fragment>
+      <MetaComponent />
       <h1>Latest Products</h1>
       {loading ? <Loader /> : error ? <Message variant={'danger'}>{error}</Message> :
         <>
+          {
+            !keyword ? <ProductCarousel/> : <Link to={'/'} className={'btn btn-light'}>Go back</Link>
+          }
           <Row>
             {
               products.map((product) =>
