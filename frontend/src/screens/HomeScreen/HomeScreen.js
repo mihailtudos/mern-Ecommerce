@@ -28,9 +28,9 @@ const HomeScreen = ({ match }) => {
       <h1>Latest Products</h1>
       {loading ? <Loader /> : error ? <Message variant={'danger'}>{error}</Message> :
         <React.Fragment>
-          {
-            !keyword ? <ProductCarousel/> : <Link to={'/'} className={'btn btn-light'}>Go back</Link>
-          }
+          {/*{*/}
+          {/*  !keyword ? <ProductCarousel/> : <Link to={'/'} className={'btn btn-light'}>Go back</Link>*/}
+          {/*}*/}
           <Row>
             {
               products.map((product) =>
