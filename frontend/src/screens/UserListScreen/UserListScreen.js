@@ -35,7 +35,7 @@ const UserListScreen = ({ history }) => {
 
 
   return (
-    <>
+    <React.Fragment>
      <h1>Users</h1>
       { loading ? <Loader /> : error ? <Message variant={'danger'} >{ error }</Message> : (
         <Table striped bordered hover className={'table-sm'}>
@@ -73,7 +73,7 @@ const UserListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

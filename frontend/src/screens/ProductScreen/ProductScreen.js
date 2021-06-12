@@ -60,7 +60,7 @@ const ProductScreen = ({ history, match }) => {
     <React.Fragment>
       <Link className='btn my-3 rounded' to='/'>GO BACK</Link>
       {loading ? <Loader/> : error ? <Message variant={'danger'}> {error} </Message> :
-        (<>
+        (<React.Fragment>
             <Row>
               <MetaComponent title={product.name}/>
               <Col md={6}>
@@ -189,7 +189,7 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup>
               </Col>
             </Row>
-          </>
+          </React.Fragment>
       )}
     </React.Fragment>
   )

@@ -25,7 +25,7 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo]);
 
   return (
-    <>
+    <React.Fragment>
       <h1>Orders</h1>
       { loading ? <Loader /> : error ? <Message variant={'danger'} >{ error }</Message> : (
         <Table striped bordered hover className={'table-sm'}>
@@ -73,7 +73,7 @@ const OrderListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

@@ -50,7 +50,7 @@ const ProductListScreen = ({ history, match }) => {
 
 
   return (
-    <>
+    <React.Fragment>
       <Row className={'align-items-center '}>
         <Col >
           <h1>Products</h1>
@@ -66,7 +66,7 @@ const ProductListScreen = ({ history, match }) => {
       {loadingCreate && <Loader />}
       {errorCreate && <Message variant={'danger'} >{ errorCreate }</Message> }
       { loading ? <Loader /> : error ? <Message variant={'danger'} >{ error }</Message> : (
-        <>
+        <React.Fragment>
           <Table striped bordered hover className={'table-sm'}>
             <thead>
             <tr>
@@ -106,9 +106,9 @@ const ProductListScreen = ({ history, match }) => {
             </tbody>
           </Table>
           <Paginate pages={pages} page={page} isAdmin />
-        </>
+        </React.Fragment>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

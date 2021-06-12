@@ -27,7 +27,7 @@ const HomeScreen = ({ match }) => {
       <MetaComponent />
       <h1>Latest Products</h1>
       {loading ? <Loader /> : error ? <Message variant={'danger'}>{error}</Message> :
-        <>
+        <React.Fragment>
           {
             !keyword ? <ProductCarousel/> : <Link to={'/'} className={'btn btn-light'}>Go back</Link>
           }
@@ -41,7 +41,7 @@ const HomeScreen = ({ match }) => {
             }
           </Row>
           <Paginate page={page} pages={pages} kayword={keyword ? keyword : '' }/>
-        </>
+        </React.Fragment>
       }
     </React.Fragment>
   )

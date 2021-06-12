@@ -87,7 +87,7 @@ const ProductEditScreen = ({ match, history }) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Link to={'/admin/productlist'} className={'btn btn-light my-4'} >Go Back</Link>
       <FormContainer>
         <h1>Edit product</h1>
@@ -187,7 +187,7 @@ const ProductEditScreen = ({ match, history }) => {
           </Form>
         }
       </FormContainer>
-    </>
+    </React.Fragment>
   );
 };
 

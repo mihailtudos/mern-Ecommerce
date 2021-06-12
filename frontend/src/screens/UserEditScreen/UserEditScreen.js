@@ -50,7 +50,7 @@ const UserEditScreen = ({ match, history }) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Link to={'/admin/userlist'} className={'btn btn-light my-4'} >Go Back</Link>
       <FormContainer>
         <h1>Edit user</h1>
@@ -99,7 +99,7 @@ const UserEditScreen = ({ match, history }) => {
           </Form>
         }
       </FormContainer>
-    </>
+    </React.Fragment>
   );
 };
 
