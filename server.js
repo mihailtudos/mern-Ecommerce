@@ -29,13 +29,24 @@ app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
 
+// could be ignored if deployed from the same server
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  console.log('added')
+  next();
+});
+
+app.use(express.static(path.join('public')));
+
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/frontend/build')));
+  // app.use(express.static(path.join(__dirname, '/frontend/build')));
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')));
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html')));
 } else {
   app.get("/", (req, res) => {
     res.send('API is running...');
