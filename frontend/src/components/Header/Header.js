@@ -16,15 +16,17 @@ const Header = () => {
   }
   return (
     <header>
-      <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
+      <Navbar bg="light" variant='light' expand="lg" collapseOnSelect>
         <Container fluid>
           <LinkContainer to='/'>
-            <Navbar.Brand>Nirmotor</Navbar.Brand>
+            <Navbar.Brand>Nirmoto</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav className="ml-auto">
-            <Route render={({ history }) => <SearchBox history={history} />} />
+              <LinkContainer to={`/produse`}>
+                <Nav.Link> Produse</Nav.Link>
+              </LinkContainer>
               <LinkContainer to={`/cart`}>
                 <Nav.Link><i className='fas fa-shopping-cart' /> Cart</Nav.Link>
               </LinkContainer>
@@ -42,7 +44,7 @@ const Header = () => {
               ) }
               {
                 userInfo ? userInfo.isAdmin && (
-                  <NavDropdown id={'adminMenu'} title={'Admin'}>
+                  <NavDropdown id={'adminMenu'} title={'Dash'}>
                     <LinkContainer to={'/admin/userlist'}>
                       <NavDropdown.Item> Users</NavDropdown.Item>
                     </LinkContainer>
@@ -52,9 +54,13 @@ const Header = () => {
                     <LinkContainer to={'/admin/orders'}>
                       <NavDropdown.Item> Orders</NavDropdown.Item>
                     </LinkContainer>
+                    <LinkContainer to={'/admin/categories'}>
+                      <NavDropdown.Item> Categories</NavDropdown.Item>
+                    </LinkContainer>
                   </NavDropdown>
                 ) : ''
               }
+              <Route render={({ history }) => <SearchBox history={history} />} />
               </Nav>
           </Navbar.Collapse>
         </Container>

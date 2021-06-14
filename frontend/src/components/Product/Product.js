@@ -7,11 +7,11 @@ const Product = ({ product }) => {
   const { _id, image, name, rating, numReviews, price } = product;
 
   return (
-    <Card className='my-3 p-3 rounded'>
-      <Link to={`/product/${_id}`} > 
+    <Card  className='my-3 p-3 rounded card-body h-100 product__item'>
+      <Link to={`/product/${_id}`} className={'product__image'}>
         <Card.Img src={image} variant='top'/>
       </Link>
-      <Card.Body>
+      <Card.Body className={'d-flex justify-content-between flex-column'}>
         <Link to={`/product/${_id}`} > 
           <Card.Title as='div'> 
             <strong>{ name }</strong>
@@ -23,7 +23,7 @@ const Product = ({ product }) => {
           </div>
         </Card.Text>
         <Card.Text as='h3'>
-          {price}$
+          {price}RON
         </Card.Text>
       </Card.Body>
     </Card>
