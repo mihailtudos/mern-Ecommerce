@@ -7,6 +7,8 @@ import User from './models/User.js';
 import Product from './models/Product.js';
 import Order from './models/Order.js';
 import connectDB from './config/db.js';
+import Category from "./models/Category.js";
+import categories from "./Data/categories.js";
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ const importData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
+    await Category.deleteMany();
 
     const createdUsers = await User.insertMany(users);
     const adminUser = createdUsers[0]._id;
@@ -27,6 +30,7 @@ const importData = async () => {
         user: adminUser
       }
     });
+    const createdCategories = await Category.insertMany(categories);
     await Product.insertMany(sampleProducts);
     console.log('Data imported'.green.inverse);
     process.exit();
@@ -42,6 +46,7 @@ const destroyData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
+    await Category.deleteMany();
 
     console.log('Data Destoyed'.red.inverse);
     process.exit();

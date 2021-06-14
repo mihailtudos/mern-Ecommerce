@@ -62,6 +62,44 @@ const productSchema = mongoose.Schema({
     required: true,
     default: 0
   },
+  characteristics: {
+    enginePower: {
+      type: Number,
+      default: 0
+    },
+    rotations: {
+      type: Number,
+      default: 0
+    },
+    debit: {
+      type: Number,
+      default: 0
+    },
+    capacityMin: {
+      type: Number,
+      default: 0
+    },
+    capacityMax: {
+      type: Number,
+      default: 0
+    },
+    handleType: {
+      type: String,
+      default: 0
+    },
+    dimensions: {
+      type: String,
+      default: 0
+    },
+    vacuumType: {
+      type: String,
+      default: 0
+    },
+    weight: {
+      type: Number,
+      default: 0
+    },
+  }
 }, {
   timestamps: true
 });

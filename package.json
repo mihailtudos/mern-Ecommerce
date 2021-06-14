@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "client": "npm start --prefix frontend",
+    "data:import": "node seeder",
+    "data:destroy": "node seeder -d"
   },
   "repository": {
     "type": "git",
@@ -27,7 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.10",
     "morgan": "^1.10.0",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "concurrently": "^6.1.0",
