@@ -13,6 +13,7 @@ const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [showMore, setShowMore] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -42,7 +43,7 @@ const ProductScreen = ({ history, match }) => {
       dispatch({type: PRODUCT_CREATE_REVIEW_RESET})
     }
     dispatch(listProductDetails(id));
-  }, [dispatch, match, id, successReview ]);
+  }, [dispatch, match, id, successReview, showMore ]);
 
   const addToCartHandler = () => {
     history.push(`/cart/${id}?qty=${qty}`)
@@ -56,6 +57,9 @@ const ProductScreen = ({ history, match }) => {
      }))
   }
 
+const handleDescriptionClick = () => {
+    setShowMore(!showMore);
+}
   return (
     <React.Fragment>
       <Link className='btn my-3 rounded' to='/'>GO BACK</Link>
@@ -66,23 +70,7 @@ const ProductScreen = ({ history, match }) => {
               <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid/>
               </Col>
-              <Col md={3}>
-                <ListGroup variant='flush'>
-                  <ListGroup.Item>
-                    <h3>{product.name}</h3>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <Rating value={product.rating || 0} text={product.numReviews || 0}/>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    Price: RON{product.price}
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    Description: {product.description}
-                  </ListGroup.Item>
-                </ListGroup>
-              </Col>
-              <Col md={3}>
+              <Col md={6}>
                 <Card>
                   <ListGroup variant='flush'>
                     <ListGroup.Item>
@@ -91,7 +79,7 @@ const ProductScreen = ({ history, match }) => {
                           Price:
                         </Col>
                         <Col>
-                          <strong>{product.price} RON</strong>
+                          <strong>{product.price && product.price.toLocaleString()} RON</strong>
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -135,6 +123,29 @@ const ProductScreen = ({ history, match }) => {
                     </ListGroup.Item>
                   </ListGroup>
                 </Card>
+                <ListGroup variant='flush'>
+                  <ListGroup.Item>
+                    <h3>{product.name}</h3>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Rating value={product.rating || 0} text={product.numReviews || 0}/>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Price: {product.price && product.price.toLocaleString()}RON <sub>(TVA inclus)</sub>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Description: {
+                    product.description ?
+                    showMore ? product.description.split("<>").map(p => <p>{p}</p>)
+                      : product.description.split("<>").slice(0, 4).map(p => <p>{p}</p>) : null
+                  }
+                    {
+                      product.description ? product.description.length > 150
+                        ? <Button onClick={handleDescriptionClick}>mai mult...</Button>
+                        : null : ''
+                    }
+                  </ListGroup.Item>
+                </ListGroup>
               </Col>
             </Row>
             <Row>

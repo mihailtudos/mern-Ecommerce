@@ -22,8 +22,8 @@ const Product = ({ product }) => {
             <Rating value={rating} text={ numReviews } color={''}/>
           </div>
         </Card.Text>
-        <Card.Text as='h3'>
-          {price}RON
+        <Card.Text as='p' className={'product__price'}>
+          {price && price.toLocaleString()}RON <sub>(TVA inclus)</sub>
         </Card.Text>
       </Card.Body>
     </Card>

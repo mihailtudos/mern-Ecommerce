@@ -2,12 +2,17 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {Badge, Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {logout} from "../../actions/userActions";
 import SearchBox from "../SearchBox/SearchBox";
 
 const Header = () => {
   const dispatch = useDispatch();
+
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
+  const cartTotalQty = cartItems.reduce((acc, item) => acc += item.qty, 0);
+
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -28,7 +33,14 @@ const Header = () => {
                 <Nav.Link> Produse</Nav.Link>
               </LinkContainer>
               <LinkContainer to={`/cart`}>
-                <Nav.Link><i className='fas fa-shopping-cart' /> Cart</Nav.Link>
+                <Nav.Link>
+                  <i className='fas fa-shopping-cart' />
+                  {
+                    cartTotalQty ? <Badge pill variant="dark" className={'text-light bg-dark'}>
+                      {cartTotalQty}
+                    </Badge> : ''
+                  }
+                </Nav.Link>
               </LinkContainer>
               {  userInfo ? (
                 <NavDropdown id={'username'} title={userInfo.name}>
