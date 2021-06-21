@@ -1,11 +1,12 @@
 import React, {useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
-import {createProduct, deleteProduct, listProducts} from "../../actions/productActions";
-import {PRODUCT_CREATE_RESET} from "../../constants/productConstants";
+import { deleteProduct, listProducts } from "../../actions/productActions";
+import {PRODUCT_CREATE_RESET, PRODUCT_UPDATE_RESET} from "../../constants/productConstants";
 import Paginate from "../../components/Paginate/Paginate";
 
 const ProductListScreen = ({ history, match }) => {
@@ -27,6 +28,8 @@ const ProductListScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
+    dispatch({ type: PRODUCT_UPDATE_RESET });
+
     if (!userInfo.isAdmin) {
       history.push('/');
     }
@@ -44,11 +47,6 @@ const ProductListScreen = ({ history, match }) => {
     }
   }
 
-  const createProductHandler = () => {
-    dispatch(createProduct());
-  }
-
-
   return (
     <React.Fragment>
       <Row className={'align-items-center '}>
@@ -56,9 +54,9 @@ const ProductListScreen = ({ history, match }) => {
           <h1>Products</h1>
         </Col>
         <Col className={'text-right justify-content-end d-flex'}>
-          <Button className={'my-4'} onClick={createProductHandler} >
+          <Link to={'/create/product'} className={'my-4 btn btn-dark'} >
             <i className={'fas fa-plus'} /> Create Product
-          </Button>
+          </Link>
         </Col>
       </Row>
       {loadingDelete && <Loader />}
@@ -70,27 +68,21 @@ const ProductListScreen = ({ history, match }) => {
           <Table striped bordered hover className={'table-sm'}>
             <thead>
             <tr>
-              <th>ID</th>
               <th>Name</th>
-              <th>Price</th>
+              <th>Price (RON)</th>
               <th>Category</th>
-              <th>Brand</th>
             </tr>
             </thead>
             <tbody>
             {
               products.map((product) => (
                 <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
+                  <td><Link className={'text-info'} to={`/product/${product._id}`}>{product.name.substring(0,15)}...</Link></td>
                   <td>
-                    ${ product.price }
+                    { product.price && product.price.toLocaleString() }
                   </td>
                   <td>
-                    { product.category }
-                  </td>
-                  <td>
-                    { product.brand }
+                    { product.category.name }
                   </td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>

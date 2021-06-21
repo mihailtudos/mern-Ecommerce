@@ -27,11 +27,11 @@ const PaymentScreen = ({ history }) => {
   return (
     <FormContainer>
       <CheckOutSteps step1 step2 step3 />
-      <h1>Payment</h1>
+      <h1>Plata</h1>
       <Form
         onSubmit={submitHandler}>
         <Form.Group>
-          <Form.Label as={'legend'}>Select method</Form.Label>
+          <Form.Label as={'legend'}>Alegeti metoda de plata </Form.Label>
           <Col>
             <Form.Check
               className={'py-2'}

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Button, Col, Row} from 'react-bootstrap';
+import { Col, Row} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Product from '../../components/Product/Product';
 import { listProducts } from "../../actions/productActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import Paginate from "../../components/Paginate/Paginate";
-import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
 import MetaComponent from "../../components/MetaComponent/MetaComponent";
 import TopSection from "../../components/TopSection/TopSection";
 import AboutUs from "../../components/AboutUs/AboutUs";
+import Accordion from "../../components/Accordion/Accordion";
 
 const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -48,14 +48,12 @@ const HomeScreen = ({ match }) => {
                     </Col>
                   )
                 }
-
               </Row>
               {
                 !keyword && <div className={'d-flex justify-content-end'}>
                   <Link to={'/products'} className={'btn'}>Vezi mai multe...</Link>
                 </div>
               }
-              <Paginate page={page} pages={pages} kayword={keyword ? keyword : '' }/>
             </React.Fragment>
         }
       </section>
@@ -66,8 +64,9 @@ const HomeScreen = ({ match }) => {
                              thirdImage={'/images/about_forth.jpg'}
                              fifthImage={'/images/about_fifth.jpg'}/>
       }
+      {!keyword && <Accordion /> }
     </React.Fragment>
   )
-}
+};
 
 export default HomeScreen;

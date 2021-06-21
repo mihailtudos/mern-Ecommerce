@@ -1,11 +1,11 @@
 import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { listCategories } from "../../actions/categoryActions";
-import MetaComponent from "../../components/MetaComponent/MetaComponent";
 import {Button, Col, Row, Table} from "react-bootstrap";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import Paginate from "../../components/Paginate/Paginate";
+import {listProducts} from "../../actions/productActions";
 
 const CategoryListScreen = ({ history, match}) => {
   const pageNumber = match.params.pageNumber || 1;
@@ -15,6 +15,9 @@ const CategoryListScreen = ({ history, match}) => {
   const categoryList = useSelector(state => state.categoryList);
   const { loading, error, categories, page, pages } = categoryList;
 
+  const productList = useSelector(state => state.productList);
+  const { loading: loadingProducts, error: errorProducts, products  } = productList;
+
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -22,6 +25,7 @@ const CategoryListScreen = ({ history, match}) => {
     if (!userInfo.isAdmin) {
       history.push('/');
     }
+    dispatch(listProducts());
     dispatch(listCategories());
   }, [dispatch, history, userInfo]);
 
@@ -33,11 +37,11 @@ const CategoryListScreen = ({ history, match}) => {
     <React.Fragment>
       <Row className={'align-items-center '}>
         <Col >
-          <h1>Categories</h1>
+          <h1>Categorii</h1>
         </Col>
         <Col className={'text-right justify-content-end d-flex'}>
           <Button className={'my-4'} onClick={createCategoryHandler} >
-            <i className={'fas fa-plus'} /> Create category
+            <i className={'fas fa-plus'} /> Categorie noua
           </Button>
         </Col>
       </Row>
@@ -50,15 +54,14 @@ const CategoryListScreen = ({ history, match}) => {
           <Table striped bordered hover className={'table-sm'}>
             <thead>
             <tr>
-              <th>ID</th>
-              <th>Category</th>
+              <th>Categorie</th>
+              <th>Produse</th>
             </tr>
             </thead>
             <tbody>
             {
               categories.map((category) => (
                 <tr key={category._id}>
-                  <td>{category._id}</td>
                   <td>{category.name}</td>
                 </tr>
               ))

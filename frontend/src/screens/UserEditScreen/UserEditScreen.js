@@ -25,11 +25,11 @@ const UserEditScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: USER_UPDATE_RESET });
-      dispatch({ type: USER_DETAILS_RESET });
+      dispatch({ type: USER_UPDATE_RESET })
+      dispatch({ type: USER_DETAILS_RESET })
       history.push('/admin/userlist');
     } else {
-      if ( !user.name ) {
+      if ( !user.name || user._id !== userId) {
         dispatch(getUserDetails(userId))
       } else {
         setName(user.name)

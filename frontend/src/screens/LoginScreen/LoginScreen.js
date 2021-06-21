@@ -37,21 +37,19 @@ const LoginScreen = ({ location, history }) => {
         <Form.Group
           controlId={'email'}
           className={'my-3'}>
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>Adresa de email</Form.Label>
           <Form.Control
             type={'email'}
             value={email}
-            placeholder={'Enter email'}
             onChange={(e) => setEmail(e.target.value)} />
         </Form.Group>
         <Form.Group
           controlId={'password'}
           className={'my-3'}>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Parola</Form.Label>
           <Form.Control
             type={'password'}
             value={password}
-            placeholder={'Enter password'}
             onChange={(e) => setPassword(e.target.value)} />
         </Form.Group>
 
@@ -63,9 +61,9 @@ const LoginScreen = ({ location, history }) => {
       </Form>
       <Row className={'py-4'}>
         <Col>
-          New Customer?
-          <Link className={'p-2'} to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-             Register
+          Nu aveti un cont?
+          <Link className={'p-2 text-decoration-underline'} to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+             Creati un cont acum!
           </Link>
         </Col>
       </Row>

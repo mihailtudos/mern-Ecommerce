@@ -81,6 +81,7 @@ export const productCreateReducer = (state = {}, action) => {
       return { loading: false, error: action.payload }
     case PRODUCT_CREATE_RESET:
       return { }
+
     default:
       return state
   }
@@ -95,7 +96,7 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
     case PRODUCT_UPDATE_FAIL:
       return { loading: false, error: action.payload }
     case PRODUCT_UPDATE_RESET:
-      return { product: {} }
+      return { }
     default:
       return state
   }

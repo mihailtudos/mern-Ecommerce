@@ -29,7 +29,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <LinkContainer to={`/produse`}>
+              <LinkContainer to={`/products`}>
                 <Nav.Link> Produse</Nav.Link>
               </LinkContainer>
               <LinkContainer to={`/cart`}>

@@ -6,12 +6,11 @@ import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import FormContainer from "../../components/FormContainer/FormContainer";
 import {listProductDetails, updateProduct} from "../../actions/productActions";
-import {PRODUCT_UPDATE_RESET} from "../../constants/productConstants";
 import axios from "axios";
+import {PRODUCT_UPDATE_RESET} from "../../constants/productConstants";
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
-
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
@@ -32,10 +31,10 @@ const ProductEditScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({type: PRODUCT_UPDATE_RESET});
+      dispatch({type: PRODUCT_UPDATE_RESET });
       history.push('/admin/productlist');
     } else {
-      if ( !product.name) {
+      if ( !product.name || product._id !== productId) {
         dispatch(listProductDetails(productId))
       } else {
         setName(product.name);
@@ -48,20 +47,6 @@ const ProductEditScreen = ({ match, history }) => {
       }
     }
   }, [ dispatch, history, product, productId, successUpdate ])
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(updateProduct({
-      _id: productId,
-      name,
-      price,
-      image,
-      brand,
-      category,
-      description,
-      countInStock
-    }))
-  };
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
@@ -81,10 +66,23 @@ const ProductEditScreen = ({ match, history }) => {
       setImage(data);
       setUploading(false);
     } catch (error) {
-      console.log(error);
       setUploading(false);
     }
   }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(updateProduct({
+      _id: productId,
+      name,
+      price,
+      image,
+      brand,
+      category,
+      description,
+      countInStock
+    }))
+  };
 
   return (
     <React.Fragment>
@@ -98,11 +96,11 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group
               controlId={'name'}
               className={'my-4'}>
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Product name</Form.Label>
               <Form.Control
                 type={'text'}
                 value={name}
-                placeholder={'Enter your name'}
+                placeholder={'Enter product name'}
                 onChange={(e) => setName(e.target.value)}/>
             </Form.Group>
 
@@ -172,7 +170,8 @@ const ProductEditScreen = ({ match, history }) => {
               className={'my-4'}>
               <Form.Label>Description</Form.Label>
               <Form.Control
-                type={'text'}
+                as="textarea"
+                rows={6}
                 value={description}
                 placeholder={'Enter description'}
                 onChange={(e) => setDescription(e.target.value)}/>

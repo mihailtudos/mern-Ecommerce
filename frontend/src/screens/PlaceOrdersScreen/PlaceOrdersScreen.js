@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CheckOutSteps from "../../components/CheckOutSteps/CheckOutSteps";
 import Message from "../../components/Message/Message";
 import {createOrder} from "../../actions/orderActions";
+import {CART_RESET} from "../../constants/cartConstants";
 
 
 const PlaceOrdersScreen = ({ history }) => {
@@ -26,6 +27,10 @@ const PlaceOrdersScreen = ({ history }) => {
 
   useEffect(() => {
     if (success){
+      localStorage.removeItem('shippingAddress');
+      localStorage.removeItem('paymentMethod');
+      localStorage.removeItem('cartItems');
+      dispatch({type: CART_RESET});
       history.push(`/order/${order.createdOrder._id}`)
     }
   }, [history, success, order]);
@@ -49,20 +54,20 @@ const PlaceOrdersScreen = ({ history }) => {
         <Col md={8}>
           <ListGroup variant={'flush'}>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>Livrare</h2>
               <p>
-                <strong>Address: </strong>
+                <strong>Adresa: </strong>
                 {cart.shippingAddress.address}, {cart.shippingAddress.city} {cart.shippingAddress.postCode}, { ' ' } {cart.shippingAddress.country}
               </p>
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Payment method</h2>
-              <strong>Method: </strong>
+              <h2>Metoda de plata</h2>
+              <strong>Metoda: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Order Items</h2>
-              {cart.length === 0 ? <Message>Your cart is empty </Message> : (
+              <h2>Produse</h2>
+              {cart.length === 0 ? <Message>Cosul dmv este gol </Message> : (
                 <ListGroup variant={'flush'}>
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={index}>
@@ -76,7 +81,7 @@ const PlaceOrdersScreen = ({ history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x {item.price} = ${item.qty * item.price}
+                          {item.qty} x {item.price && item.price.toLocaleString() } RON = {item.qty * item.price && (item.qty * item.price).toLocaleString()} RON
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -90,37 +95,37 @@ const PlaceOrdersScreen = ({ history }) => {
           <Card>
             <ListGroup variant={'flush'}>
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>Rezumatul comenzii</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
-                  <Col>${ cart.itemsPrice }</Col>
+                  <Col>Cost produse</Col>
+                  <Col>{ cart.itemsPrice && (cart.itemsPrice).toLocaleString()} RON</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
-                  <Col>${ cart.shippingPrice }</Col>
+                  <Col>Cost de livrare</Col>
+                  <Col>{ cart.shippingPrice } RON</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${ cart.taxPrice }</Col>
+                  <Col>{ cart.taxPrice && cart.taxPrice.toLocaleString() } RON</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${ cart.totalPrice }</Col>
+                  <Col>{ cart.totalPrice && cart.totalPrice.toLocaleString() } RON</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 { error && <Message variant={'danger'}>{error}</Message> }
               </ListGroup.Item>
               <ListGroup.Item>
-                <Button className={'btn-block'} disabled={cart.cartItems === 0} onClick={placeOrderHandler}>Place Order</Button>
+                <Button className={'btn-block'} disabled={cart.cartItems === 0} onClick={placeOrderHandler}>Plaseaza Comanda</Button>
               </ListGroup.Item>
             </ListGroup>
           </Card>

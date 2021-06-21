@@ -6,7 +6,7 @@ import Rating from '../../components/Rating/Rating';
 import {createProductReview, listProductDetails} from "../../actions/productActions";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
-import {PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DETAILS_RESET} from "../../constants/productConstants";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 import MetaComponent from "../../components/MetaComponent/MetaComponent";
 
 const ProductScreen = ({ history, match }) => {
@@ -29,13 +29,7 @@ const ProductScreen = ({ history, match }) => {
   const id = match.params.pid;
 
   useEffect(() => {
-    if (product) {
-      dispatch({type: PRODUCT_DETAILS_RESET})
-    }
-  }, []);
-
-
-  useEffect(() => {
+    window.scroll(0,0);
     if (successReview) {
       alert('Review submitted');
       setRating(0);
@@ -62,7 +56,7 @@ const handleDescriptionClick = () => {
 }
   return (
     <React.Fragment>
-      <Link className='btn my-3 rounded' to='/'>GO BACK</Link>
+      <Link className='btn my-3 rounded' to='/'>Inapoi</Link>
       {loading ? <Loader/> : error ? <Message variant={'danger'}> {error} </Message> :
         (<React.Fragment>
             <Row>
@@ -76,7 +70,7 @@ const handleDescriptionClick = () => {
                     <ListGroup.Item>
                       <Row>
                         <Col>
-                          Price:
+                          Pret:
                         </Col>
                         <Col>
                           <strong>{product.price && product.price.toLocaleString()} RON</strong>
@@ -89,7 +83,7 @@ const handleDescriptionClick = () => {
                           Status:
                         </Col>
                         <Col>
-                          {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                          {product.countInStock > 0 ? 'In stock' : 'Out Of Stock'}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -125,13 +119,13 @@ const handleDescriptionClick = () => {
                 </Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
-                    <h3>{product.name}</h3>
+                    <h4 className={'my-4 text-center'}>{product.name}</h4>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Rating value={product.rating || 0} text={product.numReviews || 0}/>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    Price: {product.price && product.price.toLocaleString()}RON <sub>(TVA inclus)</sub>
+                    Pret: {product.price && product.price.toLocaleString()}RON <sub>(TVA inclus)</sub>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     Description: {
@@ -151,7 +145,7 @@ const handleDescriptionClick = () => {
             <Row>
               <Col md={6} className={'my-4'}>
                 <h2>Reviews</h2>
-                {product.reviews.length === 0 && <Message>No Reviews</Message>}
+                {product.reviews.length === 0 && <Message>Fii primul care lasa un review</Message>}
                 <ListGroup variant={"flush"}>
                   {product.reviews.map((review) => <ListGroup.Item key={review._id}>
                     <strong>{review.name}</strong>
@@ -160,7 +154,7 @@ const handleDescriptionClick = () => {
                     <p>{review.comment}</p>
                   </ListGroup.Item>)}
                   <ListGroup.Item className={'my-4'}>
-                    <h2>Write a customer review</h2>
+                    <h2>Scrie un review</h2>
                     {errorReview && <Message variant={'danger'}>{errorReview}</Message> }
                     {userInfo ? (
                       <Form onSubmit={submitHandler}>
@@ -170,7 +164,7 @@ const handleDescriptionClick = () => {
                             as={'select'}
                             value={rating}
                             onChange={(e) => setRating(e.target.value)}>
-                            <option value=''>Select...</option>
+                            <option value=''>Alege rating...</option>
                             <option value='1'>1 - Poor</option>
                             <option value='2'>2 - Fair</option>
                             <option value='3'>3 - Good</option>
@@ -179,7 +173,7 @@ const handleDescriptionClick = () => {
                           </Form.Control>
                         </FormGroup>
                         <FormGroup controlId={comment} >
-                          <FormLabel>Comment</FormLabel>
+                          <FormLabel>Comentariu</FormLabel>
                           <FormControl
                             as={'textarea'}
                             row={3}
@@ -195,7 +189,7 @@ const handleDescriptionClick = () => {
                         </Button>
                       </Form>
                     ) :
-                      <Message> Please <Link to={'/login'}> login </Link> to write a review</Message>}
+                      <Message> Va rugam sa va <Link to={'/login'}> logati </Link> pentru a lasa un review</Message>}
                   </ListGroup.Item>
                 </ListGroup>
               </Col>

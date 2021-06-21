@@ -31,10 +31,10 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h1>Cosul dmv</h1>
         {
           cartItems.length === 0 ? (
-            <Message> Your cart is empty <Link to={'/'}>Go Back</Link> </Message>) : (
+            <Message> Aveti 0 produse in cont <Link to={'/'}>Go Back</Link> </Message>) : (
             <ListGroup variant={'flush'}>
               {
                 cartItems.map(item => (
@@ -81,8 +81,8 @@ const CartScreen = ({ match, location, history }) => {
         <Card>
           <ListGroup variant={'flush'}>
             <ListGroup.Item>
-              <h2>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
-              ${cartItems.reduce((acc, item) => acc += item.qty * item.price, 0).toFixed(2)}
+              <h2>Produse ({cartItems.reduce((acc, item) => acc + item.qty, 0)})</h2>
+              {cartItems.reduce((acc, item) => acc += item.qty * item.price, 0).toFixed(2)} RON
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
@@ -90,7 +90,7 @@ const CartScreen = ({ match, location, history }) => {
                 className={'btn btn-block'}
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}>
-                Proceed To Checkout
+                Checkout
               </Button>
             </ListGroup.Item>
           </ListGroup>

@@ -26,17 +26,16 @@ const ShippingScreen = ({ history }) => {
   return (
     <FormContainer>
       <CheckOutSteps step1 step2 />
-      <h1>Shipping</h1>
+      <h1>Livrare</h1>
       <Form
         onSubmit={submitHandler}>
         <Form.Group
           controlId={'address'}
           className={'my-3'}>
-          <Form.Label> Address</Form.Label>
+          <Form.Label> Adresa</Form.Label>
           <Form.Control
             type={'text'}
             value={address}
-            placeholder={'Enter address'}
             required
             onChange={(e) => setAddress(e.target.value)} />
         </Form.Group>
@@ -44,11 +43,10 @@ const ShippingScreen = ({ history }) => {
         <Form.Group
           controlId={'city'}
           className={'my-3'}>
-          <Form.Label> City</Form.Label>
+          <Form.Label> Oras</Form.Label>
           <Form.Control
             type={'text'}
             value={city}
-            placeholder={'Enter city'}
             required
             onChange={(e) => setCity(e.target.value)} />
         </Form.Group>
@@ -56,11 +54,10 @@ const ShippingScreen = ({ history }) => {
         <Form.Group
           controlId={'postCode'}
           className={'my-3'}>
-          <Form.Label> Post Code</Form.Label>
+          <Form.Label> Cod postal</Form.Label>
           <Form.Control
             type={'text'}
             value={postCode}
-            placeholder={'Enter post code'}
             required
             onChange={(e) => setPostCode(e.target.value)} />
         </Form.Group>
@@ -68,16 +65,15 @@ const ShippingScreen = ({ history }) => {
         <Form.Group
           controlId={'country'}
           className={'my-3'}>
-          <Form.Label> Country</Form.Label>
+          <Form.Label> Regiune/Judet</Form.Label>
           <Form.Control
             type={'text'}
             value={country}
-            placeholder={'Enter country'}
             required
             onChange={(e) => setCountry(e.target.value)} />
         </Form.Group>
       <Button type={'submit'} variant={'primary'}>
-        Continue
+        Mai departe
       </Button>
       </Form>
     </FormContainer>
