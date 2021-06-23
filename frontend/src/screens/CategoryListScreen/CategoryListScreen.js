@@ -1,7 +1,8 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { listCategories } from "../../actions/categoryActions";
-import {Button, Col, Row, Table} from "react-bootstrap";
+import { Col, Row, Table} from "react-bootstrap";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
 import Paginate from "../../components/Paginate/Paginate";
@@ -29,10 +30,6 @@ const CategoryListScreen = ({ history, match}) => {
     dispatch(listCategories());
   }, [dispatch, history, userInfo]);
 
-  const createCategoryHandler = () => {
-
-  }
-
   return (
     <React.Fragment>
       <Row className={'align-items-center '}>
@@ -40,9 +37,9 @@ const CategoryListScreen = ({ history, match}) => {
           <h1>Categorii</h1>
         </Col>
         <Col className={'text-right justify-content-end d-flex'}>
-          <Button className={'my-4'} onClick={createCategoryHandler} >
+          <Link to={'/categories/create'} className={'my-4'}>
             <i className={'fas fa-plus'} /> Categorie noua
-          </Button>
+          </Link>
         </Col>
       </Row>
       {/*{loadingDelete && <Loader />}*/}
@@ -63,6 +60,7 @@ const CategoryListScreen = ({ history, match}) => {
               categories.map((category) => (
                 <tr key={category._id}>
                   <td>{category.name}</td>
+                  <td>{category.products}</td>
                 </tr>
               ))
             }

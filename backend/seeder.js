@@ -30,7 +30,7 @@ const importData = async () => {
       return {
         ...product, 
         user: adminUser,
-        category: mulgatoare
+        category: mulgatoare._id
       }
     });
 

@@ -30,7 +30,6 @@ const CreateProductScreen = ({ history }) => {
   const { loading, error, categories } = categoryList;
 
   useEffect(() => {
-    console.log(product);
     if (product) {
       dispatch({type: PRODUCT_CREATE_RESET});
       history.push('/admin/productlist');

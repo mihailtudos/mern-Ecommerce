@@ -20,8 +20,24 @@ const getCategories = asyncHandler(async (req, res) => {
   res.json({categories, page, pages: Math.ceil(count / pageSize)});
 })
 
+// @desc    Create a category
+// @route   POST /api/category
+// @access  Private/Admin
+const createCategory = asyncHandler(async (req, res) => {
+  const { name } =  req.body;
+  console.log( req.body)
+  const category = new Category({
+    name,
+    products : 0
+  })
+
+  const createdCategory = await category.save();
+
+  res.status(201).json(createdCategory);
+});
 
 
 export {
   getCategories,
+  createCategory
 }

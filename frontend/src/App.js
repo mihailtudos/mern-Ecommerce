@@ -24,6 +24,7 @@ import AboutUs from "./screens/AboutUs/AboutUs";
 import CreateProductScreen from "./screens/CreateProductScreen/CreateProductScreen";
 import ProductsScreen from "./screens/ProductsScreen/ProductsScreen";
 import Privacy from "./screens/Privacy/Privacy";
+import CreateCategoryScreen from "./screens/CreateCategoryScreen/CreateCategoryScreen";
 
 const App = () => {
   return (
@@ -55,6 +56,7 @@ const App = () => {
             <Route path='/search/:keyword' component={ ProductsScreen }/>
             <Route path='/search/:keyword/page/:pageNumber' component={ ProductsScreen } exact />
             <Route path='/products/page/:pageNumber' component={ ProductsScreen } exact />
+            <Route path='/categories/create' component={ CreateCategoryScreen } exact />
             <Route path='/' exact component={ HomeScreen }/>
           </Container>
         </main>

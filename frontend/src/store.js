@@ -23,7 +23,7 @@ import {
   orderListMyReducer,
   orderListReducer, orderDeliverReducer
 } from "./reducers/orderReducers";
-import {categoryListReducer} from "./reducers/categoryReducer";
+import {categoryCreateReducer, categoryListReducer} from "./reducers/categoryReducer";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -47,7 +47,8 @@ const reducer = combineReducers({
   orderDeliver: orderDeliverReducer,
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
-  categoryList: categoryListReducer
+  categoryList: categoryListReducer,
+  categoryCreate: categoryCreateReducer
 });
 
 
