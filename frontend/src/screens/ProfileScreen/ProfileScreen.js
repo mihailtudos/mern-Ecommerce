@@ -11,6 +11,7 @@ import { listMyOrders } from "../../actions/orderActions";
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
@@ -39,6 +40,7 @@ const ProfileScreen = ({ location, history }) => {
       } else {
         setName(user.name);
         setEmail(user.email);
+        setPhone(user.phone);
       }
     }
   }, [dispatch, userInfo, history, user ]);
@@ -50,14 +52,14 @@ const ProfileScreen = ({ location, history }) => {
       setMessage('Passwords do not match');
     } else {
       //  dispatch update profile
-      dispatch(updateUserProfile({id: user._id, name, email, password}))
+      dispatch(updateUserProfile({id: user._id, name, email, phone, password}))
     }
   }
 
   return (
     <Row>
-      <Col md={3} className={'my-5'}>
-        <h2>User  Profile</h2>
+      <Col md={6} className={'my-5'}>
+        <h2>Profil</h2>
         { message && <Message variant={'danger'}>{ message }</Message>}
         { error && <Message variant={'danger'}>{ error }</Message>}
         { success && <Message variant={'success'}>{ 'Profile updated' }</Message>}
@@ -67,22 +69,30 @@ const ProfileScreen = ({ location, history }) => {
           <Form.Group
             controlId={'name'}
             className={'my-3'}>
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Nume</Form.Label>
             <Form.Control
               type={'text'}
               value={name}
-              placeholder={'Enter your name'}
               onChange={(e) => setName(e.target.value)} />
           </Form.Group>
 
           <Form.Group
             controlId={'email'}
             className={'my-3'}>
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label>Telefon</Form.Label>
+            <Form.Control
+              type={'text'}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group
+            controlId={'email'}
+            className={'my-3'}>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type={'email'}
               value={email}
-              placeholder={'Enter email'}
               onChange={(e) => setEmail(e.target.value)} />
           </Form.Group>
 
@@ -92,7 +102,6 @@ const ProfileScreen = ({ location, history }) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type={'password'}
-              placeholder={'Enter password'}
               onChange={(e) => setPassword(e.target.value)} />
           </Form.Group>
 
@@ -102,7 +111,6 @@ const ProfileScreen = ({ location, history }) => {
             <Form.Label>Confirm password</Form.Label>
             <Form.Control
               type={'password'}
-              placeholder={'Confirm password'}
               onChange={(e) => setConfirmPassword(e.target.value)} />
           </Form.Group>
 
@@ -114,17 +122,16 @@ const ProfileScreen = ({ location, history }) => {
           </Button>
         </Form>
       </Col>
-      <Col md={9}>
-        <h2>My Orders</h2>
+      <Col md={6}>
+        <h2>Comenzile mele</h2>
         {loadingOrders ? <Loader /> : errorOrders ? <Message variant={'danger'} >{ errorOrders}</Message> : (
          <Table striped bordered hover responsive className={'table-sm'}>
            <thead>
            <tr>
-             <td>ID</td>
-             <td>Date</td>
+             <td>Data</td>
              <td>Total</td>
-             <td>Paid</td>
-             <td>Delivered</td>
+             <td>Platita</td>
+             <td>Livrata</td>
              <td></td>
            </tr>
            </thead>
@@ -132,8 +139,7 @@ const ProfileScreen = ({ location, history }) => {
            {
              orders.map((order) => (
                <tr key={order._id}>
-                 <td><Link to={`/order/${order._id}`}>{order._id}</Link></td>
-                 <td>{order.createdAt.substring(0, 10)}</td>
+                 <td><Link to={`/order/${order._id}`}>{order.createdAt.substring(0, 10)}</Link></td>
                  <td>{order.totalPrice}</td>
                  <td>{order.isPaid ? order.paidAt.substring(0, 10) : (<i className='fas fa-times' style={{color: 'red'}}/> )}</td>
                  <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : (<i className='fas fa-times' style={{color: 'red'}}/> )}</td>

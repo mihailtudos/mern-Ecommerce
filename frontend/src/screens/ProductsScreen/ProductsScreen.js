@@ -7,6 +7,7 @@ import Product from "../../components/Product/Product";
 import Paginate from "../../components/Paginate/Paginate";
 import {useDispatch, useSelector} from "react-redux";
 import {listProducts} from "../../actions/productActions";
+import Filter from "../../components/Filter/Filter";
 
 const ProductsScreen = ({ match }) => {
 
@@ -31,8 +32,11 @@ const ProductsScreen = ({ match }) => {
               {
                 keyword && <Link to={'/'} className={'btn btn-light'}>Go back</Link>
               }
-              <Row className={'my-5 products__container'}>
-                {!keyword && <h1>Produsele noastre</h1>}
+              <Row className={'products__container'}>
+                {!keyword && <div className={'d-flex justify-content-between align-items-center'}>
+                  <h1 className={'mt-3'}>Produsele noastre</h1>
+                  <Filter />
+                </div> }
                 {
                   products.map((product) =>
                     <Col key={product._id} sm={12} md={6} lg={6} xl={3} className={'my-3'}>

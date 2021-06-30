@@ -30,7 +30,7 @@ const App = () => {
   return (
     <Router>
       <Header />
-        <main className='py-3'>
+        <main>
           <Container>
             <Route path='/terms' component={ Terms } exact />
             <Route path='/privacy' component={ Privacy } exact />

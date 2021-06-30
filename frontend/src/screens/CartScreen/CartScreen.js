@@ -31,7 +31,7 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Cosul dmv</h1>
+        <h1>Produse in cos</h1>
         {
           cartItems.length === 0 ? (
             <Message> Aveti 0 produse in cont <Link to={'/'}>Go Back</Link> </Message>) : (
@@ -44,10 +44,10 @@ const CartScreen = ({ match, location, history }) => {
                         <Image src={item.image} alt={item.name} fluid rounded />
                       </Col>
                       <Col md={3}>
-                        <Link to={`/product/${item.product}`}>{item.name}</Link>
+                        <Link to={`/product/${item.product}`}>{item.name && item.name.substring(0, 40)}</Link>
                       </Col>
                       <Col md={2}>
-                        ${item.price}
+                        {item.price && item.price.toLocaleString()} RON
                       </Col>
                       <Col md={2}>
                         <Form.Control

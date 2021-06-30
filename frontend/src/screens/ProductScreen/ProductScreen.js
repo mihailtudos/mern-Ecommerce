@@ -56,7 +56,7 @@ const handleDescriptionClick = () => {
 }
   return (
     <React.Fragment>
-      <Link className='btn my-3 rounded' to='/'>Inapoi</Link>
+      <Link className='btn btn-dark mb-5 rounded' to='/'>Inapoi</Link>
       {loading ? <Loader/> : error ? <Message variant={'danger'}> {error} </Message> :
         (<React.Fragment>
             <Row>
@@ -112,7 +112,7 @@ const handleDescriptionClick = () => {
                         className='btn-block rounded'
                         type='submit'
                         disabled={product.countInStock === 0}>
-                        Add to cart
+                        Adauga
                       </Button>
                     </ListGroup.Item>
                   </ListGroup>

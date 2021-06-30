@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import {Badge, Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import {logout} from "../../actions/userActions";
 import SearchBox from "../SearchBox/SearchBox";
+import Contacts from "../Contacts/Contacts";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,9 @@ const Header = () => {
       <Navbar bg="light" variant='light' expand="lg" collapseOnSelect>
         <Container fluid>
           <LinkContainer to='/'>
-            <Navbar.Brand>Nirmoto</Navbar.Brand>
+            <Navbar.Brand>
+              <img className={'logo'} src="/images/nirmoto.png" alt="Nirmoto logo"/>
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
@@ -77,6 +80,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <Contacts />
     </header>
   )
 }
