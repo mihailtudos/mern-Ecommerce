@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js'
 import path from 'path';
 import colors from 'colors';
-import {forceDomain} from 'forcedomain';
+import { forceDomain } from 'forcedomain';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -45,8 +45,10 @@ const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 if (process.env.NODE_ENV === 'production') {
+  console.log('sasa')
   app.use(forceDomain({
-    hostname: 'www.nirmoto.ro'
+    hostname: 'www.nirmoto.ro',
+    protocol: 'https'
   }));
   // app.use(express.static(path.join(__dirname, '/frontend/build')));
   app.use(express.static(path.join('public')));
