@@ -1,10 +1,8 @@
 import React from 'react';
-import styles from './contacts.module.css';
-
 const Contacts = () => {
 
   return (
-    <div className={`${styles.contacts} container`}>
+    <div className={`${'contacts'} container`}>
       <p>
         <a href="tel:+40 757 561 477">+40 (0)757 561 477</a>
       </p>

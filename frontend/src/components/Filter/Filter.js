@@ -1,10 +1,8 @@
 import React from 'react';
-import styles from './Filter.module.css';
-
 
 const Filter = () => {
   return (
-    <div className={styles.filter}>
+    <div className={'filter'}>
       <i className="fas fa-search"  />
       <input type="text" placeholder={'cauta...'}/>
 
