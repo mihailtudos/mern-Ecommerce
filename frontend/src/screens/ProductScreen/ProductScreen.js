@@ -62,7 +62,7 @@ const handleDescriptionClick = () => {
             <Row>
               <MetaComponent title={product.name}/>
               <Col md={6}>
-                <Image src={product.image[0]} alt={product.name} fluid/>
+                <Image src={product.image } alt={product.name} fluid/>
               </Col>
               <Col md={6}>
                 <Card>
