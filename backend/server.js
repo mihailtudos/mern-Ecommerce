@@ -24,10 +24,8 @@ if (process.env.NODE_ENV === 'development') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-    console.log('added')
     next();
   });
-
 }
 
 app.use(express.json());
@@ -45,7 +43,6 @@ const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 if (process.env.NODE_ENV === 'production') {
-  console.log('sasa')
   app.use(forceDomain({
     hostname: 'www.nirmoto.ro',
     protocol: 'https'

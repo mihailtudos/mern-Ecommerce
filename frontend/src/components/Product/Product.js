@@ -9,7 +9,7 @@ const Product = ({ product }) => {
   return (
     <Card  className='my-3 p-3 rounded card-body h-100 product__item'>
       <Link to={`/product/${_id}`} >
-        <Card.Img className={'product__image'} src={image} variant='top'/>
+        <Card.Img className={'product__image'} src={image[0]} variant='top'/>
       </Link>
       <Card.Body className={'d-flex justify-content-between flex-column'}>
         <Link to={`/product/${_id}`} > 

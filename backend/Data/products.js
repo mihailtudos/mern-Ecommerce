@@ -1,7 +1,7 @@
 const products = [
   {
     name: 'GREEN LINE 120 aluminiu PC - Bidon 20L ',
-    image: '/images/120_aluminiu.jpg',
+    image: ['/images/120_aluminiu.jpg'],
     description: "Bidon 20L aluminiu",
     brand: 'GREENLINE',
     category: 'mulgatoare',
@@ -23,7 +23,7 @@ const products = [
   },
   {
     name: 'GREEN LINE 130 INOX PC - Bidon 30L ',
-    image: '/images/mulgotor_30l.png',
+    image: ['/images/mulgotor_30l.png'],
     description: "Bidon 20L aluminiu",
     brand: 'GREENLINE',
     category: 'mulgatoare',
@@ -45,7 +45,7 @@ const products = [
   },
   {
     name: 'Motocultor Rotkat RO75R',
-    image: '/images/rotkat1.jpg',
+    image: ['/images/rotkat1.jpg'],
     description:
       'Pachet Camarad Motocultor Rotkat RO75R, 7 CP, benzina, plug arat, roti metalice, 2 L ulei',
     brand: 'Rotkat',
@@ -83,7 +83,7 @@ const products = [
   },
   {
     name: 'Motocultor RO75RS, 7CP',
-    image: '/images/rotkat1.jpg',
+    image: ['/images/rotkat1.jpg'],
     description: "DESCRIERE: Recomandat pentru suprafețe de 500 mp 5.000 mp cu pământ dur, " +
       "argilos sau nisipos <> Compact, bine proporționat, cu centru de greutate deasupra frezelor asigurând o buna " +
       "manevrabilitate în timpul lucrului, stabilitate și vibrații reduse (nu țopăie) " +
@@ -134,175 +134,6 @@ const products = [
       garantie: 2,
     }
   },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'motocultoare',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-
 ]
 
 export default products;

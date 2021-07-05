@@ -89,6 +89,10 @@ a {
     text-decoration: none;
 }
 
+.navbar {
+    text-transform: none;
+}
+
 .navbar-light .navbar-nav .nav-link {
     color: black;
 }
@@ -244,6 +248,13 @@ a {
 .products__section {
     min-height: 500px;
     margin: auto;
+}
+
+.products__filter--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: wrap row;
 }
 
 /*About us START*/
@@ -600,6 +611,10 @@ footer a:hover {
 
     .about-us__container {
      flex-flow: wrap column;
+    }
+
+    .products__filter--container {
+        justify-content: center;
     }
 }
 

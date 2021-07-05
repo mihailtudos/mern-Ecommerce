@@ -33,7 +33,7 @@ const ProductsScreen = ({ match }) => {
                 keyword && <Link to={'/'} className={'btn btn-light'}>Go back</Link>
               }
               <Row className={'products__container'}>
-                {!keyword && <div className={'d-flex justify-content-between align-items-center'}>
+                {!keyword && <div className={'products__filter--container'}>
                   <h1 className={'mt-3'}>Produsele noastre</h1>
                   <Filter />
                 </div> }
