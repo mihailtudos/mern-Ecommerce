@@ -34,7 +34,7 @@ const CartScreen = ({ match, location, history }) => {
         <h1>Produse in cos</h1>
         {
           cartItems.length === 0 ? (
-            <Message> Aveti 0 produse in cont <Link to={'/'}>Go Back</Link> </Message>) : (
+            <Message> Aveti 0 produse in cont <Link className={'btn-sm btn-dark'} to={'/products'}>Inapoi</Link> </Message>) : (
             <ListGroup variant={'flush'}>
               {
                 cartItems.map(item => (

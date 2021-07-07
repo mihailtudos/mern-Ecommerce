@@ -51,11 +51,11 @@ const ProductListScreen = ({ history, match }) => {
     <React.Fragment>
       <Row className={'align-items-center '}>
         <Col >
-          <h1>Products</h1>
+          <h1>Produse</h1>
         </Col>
         <Col className={'text-right justify-content-end d-flex'}>
           <Link to={'/create/product'} className={'my-4 btn btn-dark'} >
-            <i className={'fas fa-plus'} /> Create Product
+            <i className={'fas fa-plus'} /> Produs nou
           </Link>
         </Col>
       </Row>
@@ -68,9 +68,9 @@ const ProductListScreen = ({ history, match }) => {
           <Table striped bordered hover className={'table-sm'}>
             <thead>
             <tr>
-              <th>Name</th>
-              <th>Price (RON)</th>
-              <th>Category</th>
+              <th>Nume</th>
+              <th>Pret (RON)</th>
+              <th>Categorie</th>
             </tr>
             </thead>
             <tbody>

@@ -83,7 +83,7 @@ const CreateProductScreen = ({ history }) => {
 
   return (
     <React.Fragment>
-      <Link to={'/admin/productlist'} className={'btn btn-light my-4'} >Inapoi</Link>
+      <Link to={'/admin/productlist'} className={'btn btn-dark my-4'} >Inapoi</Link>
       <FormContainer>
         <h1>Produs nou</h1>
         {loading ? <Loader/> : error ? <Message variant={'danger'}>{error}</Message> :

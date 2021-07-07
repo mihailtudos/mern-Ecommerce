@@ -26,28 +26,26 @@ const OrderListScreen = ({ history }) => {
 
   return (
     <React.Fragment>
-      <h1>Orders</h1>
+      <h1>Comenzi</h1>
       { loading ? <Loader /> : error ? <Message variant={'danger'} >{ error }</Message> : (
         <Table striped bordered hover className={'table-sm'}>
           <thead>
           <tr>
-            <th>ID</th>
-            <th>User</th>
-            <th>Date</th>
+            <th>Client</th>
+            <th>Data</th>
             <th>Total</th>
-            <th>Paid</th>
-            <th>Delivered</th>
-            <th>Action</th>
+            <th>Platit</th>
+            <th>Livrat</th>
+            <th>Actiune</th>
           </tr>
           </thead>
           <tbody>
           {
             orders.map((order) => (
               <tr key={order._id}>
-                <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
                 <td>{order.createdAt && order.createdAt.substring(0,10)}</td>
-                <td>${order.totalPrice}</td>
+                <td>{ order.totalPrice && (order.totalPrice).toLocaleString() } RON</td>
                 <td>{
                   order.isPaid ? (
                     order.paidAt.substring(0, 10)
@@ -64,7 +62,7 @@ const OrderListScreen = ({ history }) => {
                 }</td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant={'light'} className={'btn-sm'} >Details</Button>
+                    <Button variant={'light'} className={'btn-sm'} >Detalii</Button>
                   </LinkContainer>
                 </td>
               </tr>

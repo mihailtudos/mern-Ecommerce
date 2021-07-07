@@ -37,7 +37,7 @@ const HomeScreen = ({ match }) => {
           loading ? <Loader /> : error ? <Message variant={'danger'}>{error}</Message> :
             <React.Fragment>
               {
-                keyword && <Link to={'/'} className={'btn btn-light'}>Go back</Link>
+                keyword && <Link to={'/'} className={'btn btn-dark'}>Inapoi</Link>
               }
               <Row className={'my-5 products__container'}>
                 {!keyword && <h1>Produsele noastre</h1>}

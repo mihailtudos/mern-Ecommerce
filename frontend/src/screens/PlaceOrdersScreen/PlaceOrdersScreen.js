@@ -22,7 +22,8 @@ const PlaceOrdersScreen = ({ history }) => {
   //calculate prices
   cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.qty * item.price, 0 ));
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 10);
-  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
+  //TODO - add shipping tax
+  cart.taxPrice = addDecimals(Number((0).toFixed(2)));
   cart.totalPrice = Number(Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice));
 
   useEffect(() => {

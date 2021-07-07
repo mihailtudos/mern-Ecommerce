@@ -51,9 +51,9 @@ const UserEditScreen = ({ match, history }) => {
 
   return (
     <React.Fragment>
-      <Link to={'/admin/userlist'} className={'btn btn-light my-4'} >Go Back</Link>
+      <Link to={'/admin/userlist'} className={'btn btn-dark my-4'} >Inapoi</Link>
       <FormContainer>
-        <h1>Edit user</h1>
+        <h1>Editeaza Utilizator</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant={'danger'}>{errorUpdate}</Message>}
         {loading ? <Loader/> : error ? <Message variant={'danger'}>{error}</Message> :
@@ -61,7 +61,7 @@ const UserEditScreen = ({ match, history }) => {
             <Form.Group
               controlId={'name'}
               className={'my-4'}>
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Nume</Form.Label>
               <Form.Control
                 type={'text'}
                 value={name}
@@ -72,7 +72,7 @@ const UserEditScreen = ({ match, history }) => {
             <Form.Group
               controlId={'email'}
               className={'my-4'}>
-              <Form.Label>Email Address</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type={'email'}
                 value={email}
@@ -86,7 +86,7 @@ const UserEditScreen = ({ match, history }) => {
               <Form.Check
                 type={'checkbox'}
                 checked={isAdmin}
-                label={'Is admin'}
+                label={'admin'}
                 onChange={(e) => setIsAdmin(e.target.checked)}/>
             </Form.Group>
 

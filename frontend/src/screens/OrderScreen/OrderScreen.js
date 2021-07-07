@@ -68,7 +68,6 @@ const OrderScreen = ({ match, history }) => {
   }, [ order, dispatch, successPay, orderId, successDeliver, history, userInfo ]);
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult)
     dispatch(payOrder(orderId, paymentResult));
   }
 
@@ -78,30 +77,38 @@ const OrderScreen = ({ match, history }) => {
 
   return loading ? <Loader /> : error ? <Message variant={'danger'} >{ error }</Message> :
     <React.Fragment>
-      <h1>Order {order._id}</h1>
+      <h1>Comanda: {order._id}</h1>
       <Row>
-        <Col md={8}>
+        <Col md={8} className={'mb-5'}>
           <ListGroup variant={'flush'}>
             <ListGroup.Item>
-              <h2>Shipping</h2>
-              <p><strong>Name:</strong> {order.user.name}</p>
-              <p><a href={`mailto:${order.user.email}`}> {order.user.email} </a></p>
+              <h2>Detalii</h2>
               <p>
-                <strong>Address: </strong>
+                <strong>Nume:</strong> {order.user.name}
+              </p>
+              <p>
+                <strong>Email:</strong><a href={`mailto:${order.user.email}`}> {order.user.email} </a>
+              </p>
+              <p>
+                <strong>Tel:</strong><a href={`tel:${order.user.phone}`}> {order.user.phone} </a>
+              </p>
+              <p>
+                <strong>Adresa: </strong>
                 {order.shippingAddress.address}, {order.shippingAddress.city} {order.shippingAddress.postCode}, { ' ' } {order.shippingAddress.country}
               </p>
-              {order.isDelivered ? <Message variant={'success'}>Delivered on {order.deliveredAt.substring(0, 10)}</Message> : <Message variant={'danger'}>Not Delivered</Message> }
+
+              {order.isDelivered ? <Message variant={'success'}>Delivered on {order.deliveredAt.substring(0, 10)}</Message> : <Message variant={'danger'}>Urmeaza a fi livrata</Message> }
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Payment method</h2>
+              <h2>Metoda de plata</h2>
               <p>
-                <strong>Method: </strong>
-                {order.paymentMethod}
+                <strong>Metoda: </strong>
+                {order.paymentMethod.toLowerCase()}
               </p>
-              {order.isPaid ? <Message variant={'success'}>Paid on {order.paidAt.substring(0, 10)}</Message> : <Message variant={'danger'}>Not Paid</Message> }
+              {order.isPaid ? <Message variant={'success'}>Paid on {order.paidAt.substring(0, 10)}</Message> : <Message variant={'danger'}>Nu a fost achitata</Message> }
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Order Items</h2>
+              <h2>Produse comandate</h2>
               {order.length === 0 ? <Message>Order is empty </Message> : (
                 <ListGroup variant={'flush'}>
                   {order.orderItems.map((item, index) => (
@@ -116,7 +123,7 @@ const OrderScreen = ({ match, history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x {item.price} = ${item.qty * item.price}
+                          {item.qty} x {item.price && `${item.price.toLocaleString()} RON`} = {(item.qty * item.price) && (item.qty * item.price).toLocaleString() } RON
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -130,38 +137,38 @@ const OrderScreen = ({ match, history }) => {
           <Card>
             <ListGroup variant={'flush'}>
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>A se achita</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
-                  <Col>${ order.itemsPrice }</Col>
+                  <Col>Produse</Col>
+                  <Col>{ order.itemsPrice && (order.itemsPrice).toLocaleString() } RON</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
-                  <Col>${ order.shoppingPrice }</Col>
+                  <Col>Livrare</Col>
+                  <Col>{ order.shoppingPrice && (order.shoppingPrice).toLocaleString() } RON</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Tax</Col>
-                  <Col>${ order.taxPrice }</Col>
+                  <Col>Taxe</Col>
+                  <Col>{ order.taxPrice && (order.taxPrice).toLocaleString() } RON</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${ order.totalPrice }</Col>
+                  <Col>{ order.totalPrice && (order.totalPrice).toLocaleString() } RON</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {order.paymentMethod !== "Cash" ? !order.isPaid ? (
                 <ListGroupItem>
                   {loadingPay && <Loader />}
                   {!sdkReady ? <Loader /> : (<PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler}/>) }
                 </ListGroupItem>
-              )}
+              ) : null : null}
               {loadingDeliver && <Loader />}
               {
                 userInfo
