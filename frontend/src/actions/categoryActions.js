@@ -5,7 +5,7 @@ import {
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS
 } from "../constants/categoriesConstants";
-import {PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS} from "../constants/productConstants";
+import {PRODUCT_CREATE_FAIL} from "../constants/productConstants";
 
 export const listCategories = (keyword = '', pageNumber = '') => async (dispatch) => {
   try {

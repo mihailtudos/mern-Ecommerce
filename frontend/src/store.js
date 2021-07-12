@@ -48,7 +48,7 @@ const reducer = combineReducers({
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
   categoryList: categoryListReducer,
-  categoryCreate: categoryCreateReducer
+  categoryCreate: categoryCreateReducer,
 });
 
 

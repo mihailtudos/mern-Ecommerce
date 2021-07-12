@@ -18,7 +18,7 @@ import {
   PRODUCT_CREATE_REVIEW_SUCCESS,
   PRODUCT_CREATE_REVIEW_FAIL,
   PRODUCT_TOP_REQUEST,
-  PRODUCT_TOP_SUCCESS, PRODUCT_TOP_FAIL
+  PRODUCT_TOP_SUCCESS, PRODUCT_TOP_FAIL, PRODUCT_FILTER_BY_TITLE
 } from '../constants/productConstants';
 import axios from "axios";
 
@@ -33,6 +33,16 @@ export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) 
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.response && error.response.data.message ? error.response.data.message : error.message })
   }
 };
+
+export const filterProductsByTitle = (products, title) => (dispatch) => {
+  dispatch ({
+    type: PRODUCT_FILTER_BY_TITLE,
+    payload: {
+      title: title,
+      filteredProducts: products.filter(p => p.name.toLowerCase().includes(title.toLowerCase()))
+    }
+  })
+}
 
 export const listProductDetails = (id) => async (dispatch) => {
   try {

@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message/Message";
 import Loader from "../../components/Loader/Loader";
 import FormContainer from "../../components/FormContainer/FormContainer";
-import {createProduct, listProductDetails, listProducts, updateProduct} from "../../actions/productActions";
+import {createProduct} from "../../actions/productActions";
 import axios from "axios";
-import {PRODUCT_CREATE_RESET, PRODUCT_UPDATE_RESET} from "../../constants/productConstants";
+import {PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 import {listCategories} from "../../actions/categoryActions";
 
 const CreateProductScreen = ({ history }) => {

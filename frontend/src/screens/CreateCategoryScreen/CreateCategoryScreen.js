@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {createCategory, listCategories} from "../../actions/categoryActions";
-import axios from "axios";
 import { Link } from 'react-router-dom';
 import FormContainer from "../../components/FormContainer/FormContainer";
 import Loader from "../../components/Loader/Loader";

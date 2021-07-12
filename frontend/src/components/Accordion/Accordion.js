@@ -1,6 +1,5 @@
 import React from 'react';
 import QuestionItem from "../QuestionItem/QuestionItem";
-import Widget from "../Widget/Widget";
 import data from './data';
 
 const Accordion = () => {

@@ -75,7 +75,7 @@ const Header = () => {
                   </NavDropdown>
                 ) : ''
               }
-              <Route render={({ history }) => <SearchBox history={history} />} />
+              {/*<Route render={({ history }) => <SearchBox history={history} />} />*/}
               </Nav>
           </Navbar.Collapse>
         </Container>

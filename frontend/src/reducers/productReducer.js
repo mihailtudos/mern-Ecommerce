@@ -23,10 +23,10 @@ import {
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL,
-  PRODUCT_DETAILS_RESET
+  PRODUCT_DETAILS_RESET, PRODUCT_FILTER_BY_TITLE
 } from '../constants/productConstants';
 
-export const productListReducer = (state = { products: [] }, action) => {
+export const productListReducer = (state = { products: [], filteredProducts: [] }, action) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return {loading: true, products: []}
@@ -34,8 +34,16 @@ export const productListReducer = (state = { products: [] }, action) => {
       return {
         loading: false,
         products: action.payload.products,
+        filteredProducts: action.payload.products,
         pages: action.payload.pages,
-        page: action.payload.page}
+        page: action.payload.page
+      }
+    case PRODUCT_FILTER_BY_TITLE:
+      return {
+        ...state,
+        filteredProducts: action.payload.filteredProducts,
+        filter: action.payload.title
+      }
     case PRODUCT_LIST_FAIL:
       return {loading: false, error: action.payload}
     default:

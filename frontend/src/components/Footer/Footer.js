@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -29,7 +28,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={'footer__copyright'}>
-            Copyright &copy; Nirmoto - developed by &nbsp; <a href="https://mihailtudos.com/" rel="noreferrer" className={'text-info'} target="_blank"> Mihail Tudos</a>
+            Copyright &copy; Nirmoto - developed by &nbsp; <a href="https://mihailtudos.com/" rel="noopener noreferrer" className={'text-info'} target="_blank"> Mihail Tudos</a>
         </div>
       </Container>
     </footer>

@@ -9,15 +9,12 @@ import Paginate from "../../components/Paginate/Paginate";
 import {listProducts} from "../../actions/productActions";
 
 const CategoryListScreen = ({ history, match}) => {
-  const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
 
   const categoryList = useSelector(state => state.categoryList);
   const { loading, error, categories, page, pages } = categoryList;
 
-  const productList = useSelector(state => state.productList);
-  const { loading: loadingProducts, error: errorProducts, products  } = productList;
 
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;

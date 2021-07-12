@@ -6,7 +6,6 @@ import Product from '../../components/Product/Product';
 import { listProducts } from "../../actions/productActions";
 import Loader from "../../components/Loader/Loader";
 import Message from "../../components/Message/Message";
-import Paginate from "../../components/Paginate/Paginate";
 import MetaComponent from "../../components/MetaComponent/MetaComponent";
 import TopSection from "../../components/TopSection/TopSection";
 import AboutUs from "../../components/AboutUs/AboutUs";
@@ -18,7 +17,7 @@ const HomeScreen = ({ match }) => {
   const pageNumber = match.params.pageNumber || 1;
 
   const productList = useSelector(state => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const { loading, error, products } = productList;
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
