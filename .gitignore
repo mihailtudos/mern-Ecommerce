@@ -118,3 +118,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Ignoring uploads folder to keep product images on the server
+/uploads
+uploads
