@@ -6,8 +6,11 @@ import Product from "../models/Product.js";
 // @route   GET /api/categories
 // @access  Public
 const getCategories = asyncHandler(async (req, res) => {
+  //page products
   const pageSize = 10;
+  //if page is provided than start with specific page
   const page = Number(req.query.pageNumber) || 1;
+
   const keyword = req.query.keyword ? {
     name: {
       $regex: req.query.keyword,
