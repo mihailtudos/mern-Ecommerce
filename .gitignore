@@ -120,4 +120,8 @@ dist
 
 # Ignoring uploads folder to keep product images on the server
 /uploads
+uploads/
+/uploads/*
 uploads
+backend/uploads
+./backend/uploads
