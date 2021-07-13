@@ -42,12 +42,13 @@ app.use('/api/categories', categoryRouter);
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
-app.get('/images/:key', (res, req) => {
-  const key = req.params.key;
-  const readStream = getFileStream(key);
-  console.log('here')
-  readStream.pipe(res);
-});
+
+// app.get('/images/:key', (res, req) => {
+//   const key = req.params.key;
+//   const readStream = getFileStream(key);
+//   console.log('here')
+//   readStream.pipe(res);
+// });
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
