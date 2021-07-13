@@ -137,17 +137,31 @@ a {
     padding: .7rem 2rem;
     border-radius: .5rem;
     margin: 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 55%;
 }
 
 .filter input {
+    width: 100%;
     border: none;
     padding: 0 1rem;
+    border-right: 2px solid grey;
+    margin-right: 1rem;
 }
 
 .filter input:active,
 .filter input:focus {
     border: none;
     outline: none;
+    border-right: 2px solid grey;
+}
+
+.products__selector {
+    width: 100%;
+    border: none;
 }
 
 .contacts {
@@ -254,7 +268,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-flow: wrap row;
+    flex-flow: wrap column;
 }
 
 /*About us START*/
@@ -539,6 +553,9 @@ footer a:hover {
         grid-column-start: 3;
         grid-column-end: 5;
     }
+    .filter {
+        width:55%;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -552,12 +569,19 @@ footer a:hover {
     .about__us--forth {
         grid-column: span 3;
     }
+
+    .filter {
+        width:60%;
+    }
 }
 
 @media screen and (min-width: 992px) {
     .accordion .container {
         display: grid;
         grid-template-columns: 250px 1fr;
+    }
+    .filter {
+        width:60%;
     }
 }
 
@@ -615,6 +639,10 @@ footer a:hover {
 
     .products__filter--container {
         justify-content: center;
+    }
+
+    .filter {
+        width: 100%;
     }
 }
 

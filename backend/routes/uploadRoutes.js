@@ -1,13 +1,12 @@
 import express from "express";
 import multer from 'multer';
 import path from 'path';
-
+import { uploadFile } from './s3.js';
 const router = express.Router();
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, 'uploads/');
-
   },
   filename(req, file, cb) {
     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
@@ -33,8 +32,11 @@ const upload = multer({
   }
 });
 
-router.post('/', upload.single('image'), (req, res) => {
-  res.send(`/${req.file.path}`)
+
+
+router.post('/', upload.single('image'), async (req, res) => {
+  const result = await uploadFile(req.file);
+  res.send( `https://nirmoto.s3.eu-west-2.amazonaws.com/${result.Key}`)
 })
 
 export default router;

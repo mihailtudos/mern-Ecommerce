@@ -24,9 +24,10 @@ const ProductsScreen = ({ match }) => {
   }, [dispatch, keyword, pageNumber])
 
   function removeDuplicates(myArr, prop) {
-    return myArr.filter((obj, pos, arr) => {
+    let arr = myArr.filter((obj, pos, arr) => {
       return arr.map( mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
     });
+    return arr;
   }
 
   const searchHandler = (e) => {
@@ -53,19 +54,21 @@ const ProductsScreen = ({ match }) => {
                 {!keyword && <div className={'products__filter--container'}>
                   <h1 className={'mt-3'}>Produsele noastre</h1>
                   <div className={'filter'}>
-                    <i className="fas fa-search"  />
-                    <input type="text" placeholder={'cauta...'} onChange={(e) => searchHandler(e)}/>
-                    {/*<Form.Control*/}
-                    {/*  as={'select'}*/}
-                    {/*  value={category}*/}
-                    {/*  onChange={(e) => setCategory(e.target.value)}>*/}
-                    {/*  <option value={'all'}>filter</option>*/}
-                    {/*  {*/}
-                    {/*    removeDuplicates(products.map(product => product.category), 'name').map((x) => (*/}
-                    {/*      <option key={x._id} value={x._id}>{x.name}</option>*/}
-                    {/*    ))*/}
-                    {/*  }*/}
-                    {/*</Form.Control>*/}
+                    <i className="fas fa-search"/>
+                    <input type="text"
+                           placeholder={'cauta...'}
+                           onChange={(e) => searchHandler(e)}/>
+                    <select className="products__selector"
+                            aria-label="Default select example"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}>
+                      <option value={'all'}>categorie</option>
+                      {
+                        removeDuplicates(products.map(product => product.category), 'name').map((x) => (
+                          <option key={x._id} value={x._id}>{x.name}</option>
+                        ))
+                      }
+                    </select>
                   </div>
                 </div> }
                 {

@@ -11,6 +11,10 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import morgan from 'morgan';
 import categoryRouter from "./routes/categoryRouter.js";
+import multer from 'multer';
+import {getFileStream} from "./routes/s3.js";
+const upload = multer({ dest: 'uploads'});
+
 
 dotenv.config();
 
@@ -38,6 +42,12 @@ app.use('/api/categories', categoryRouter);
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
+app.get('/images/:key', (res, req) => {
+  const key = req.params.key;
+  const readStream = getFileStream(key);
+  console.log('here')
+  readStream.pipe(res);
+});
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
